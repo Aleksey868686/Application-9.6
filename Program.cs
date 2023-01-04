@@ -1,35 +1,35 @@
-﻿namespace Application_9._6
+﻿namespace Application_9._6;
+
+internal class Program
+
 {
-    internal class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        /// Задание #1 (создал свое исключение SortException)   
+        var exceptions = new Exception[] { new ArgumentOutOfRangeException(), new IndexOutOfRangeException(), new SortException(), new NotImplementedException(), new RankException() };
+        foreach (var item in exceptions)
         {
-            /// Задание #1   
-            var exceptions = new Exception[] { new ArgumentOutOfRangeException(), new IndexOutOfRangeException(), new MyException(), new NotImplementedException(), new RankException() };
-            foreach (var item in exceptions)
+            try
             {
-                try
-                {
-                    throw item;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+                throw item;
             }
-
-            /// Задание #2
-
-
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
-    }
-    public class MyException : Exception
-    {
-        public MyException()
-        { }
 
-        public MyException(string message)
-            : base(message)
-        { }
+
+        /// Задание #2
+
+        SortEvent se = new SortEvent();
+        se.SortArrEvent += se_SortingCompleted;
+        se.StartSorting();
+    }
+
+    public static void se_SortingCompleted()
+    {
+        Console.WriteLine("Операция сортировки завершена.");
+
     }
 }
